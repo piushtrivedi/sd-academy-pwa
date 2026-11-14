@@ -1,0 +1,12 @@
+HTML (place where the button should appear):
+<button id="sd-pwa-install" type="button" hidden>Install SD Academy App</button>
+
+CSS (add before </head>):
+<style>#sd-pwa-install{border:0;border-radius:999px;padding:11px 17px;background:#0F172A;color:#fff;font:700 14px/1.2 inherit;cursor:pointer;box-shadow:0 8px 22px rgba(15,23,42,.18)}#sd-pwa-install[hidden]{display:none}</style>
+
+JavaScript (add before </body>; use CDATA in Blogger XML if required):
+<script>
+//<![CDATA[
+(function(){var b=document.getElementById('sd-pwa-install');if(!b)return;var p=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();p=e;b.hidden=false;});b.addEventListener('click',async function(){if(!p)return;b.disabled=true;await p.prompt();p=null;b.disabled=false;b.hidden=true;});window.addEventListener('appinstalled',function(){p=null;b.hidden=true;});})();
+//]]>
+</script>
